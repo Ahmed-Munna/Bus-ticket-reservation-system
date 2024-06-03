@@ -17,8 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('otp')
+                  ->nullable()
+                  ->default(null);
+            $table->enum('role', ['admin','area-manager','counter-manager','user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->index(['id', 'email', 'role']);
         });
     }
 

@@ -62,6 +62,11 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'AuthController' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/controllers/AuthController.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',
