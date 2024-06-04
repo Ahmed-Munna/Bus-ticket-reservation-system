@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,12 @@ Route::controller(AuthController::class)->group(function () {
     });
 });
 
+// update profile routes
+Route::get('/profile/{id}', [ProfileUpdateController::class, 'index'])->name('profile.index');
+Route::post('/profile', [ProfileUpdateController::class, 'update'])->name('profile.update');
+
+
+// Socialite Routes
 Route::controller(SocialiteLoginController::class)->group(function () {
 
     Route::get('/auth/{provider}', 'redirectToProvider')->name('auth.google');
