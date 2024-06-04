@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SocialiteLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,11 @@ Route::controller(AuthController::class)->group(function () {
         Route::post('/user/logout', 'logout')->name('user.logout');
         Route::post('/reset-password', 'resetPassword')->name('reset.password');
     });
+});
+
+Route::controller(SocialiteLoginController::class)->group(function () {
+
+    Route::get('/auth/{provider}', 'redirectToProvider')->name('auth.google');
+    Route::get('/{provider}/callback', 'handleProviderCallback')->name('auth.google.callback');
 });
 
