@@ -33,6 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -51,5 +54,16 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasOne(Profile::class);
+    }
+
+    public static function boot() {
+        parent::boot();
+        
+        static::created(function ($user) {
+            
+            $profile = new Profile();
+            $profile->user_id = $user->id;
+            $profile->save();
+        });
     }
 }

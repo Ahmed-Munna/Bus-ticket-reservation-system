@@ -39,8 +39,11 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // update profile routes
-Route::get('/profile/{id}', [ProfileUpdateController::class, 'index'])->name('profile.index');
-Route::post('/profile', [ProfileUpdateController::class, 'update'])->name('profile.update');
+Route::get('/profile', [ProfileUpdateController::class, 'index'])
+       ->middleware('auth:sanctum')
+       ->name('profile.index');
+Route::post('/profile/update', [ProfileUpdateController::class, 'update'])
+       ->middleware('auth:sanctum')->name('profile.update');
 
 
 // Socialite Routes

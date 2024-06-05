@@ -73,12 +73,6 @@ class SocialiteLoginController extends Controller
                 'verified_at' => now(),
             ]);
 
-            // update profile
-            Profile::updateOrCreate([
-                'user_id' => $user->id,
-                'photo' => $userFromProvider->getAvatar(),
-            ]);
-
             // create token
             $token = $user->createToken('auth_token')->plainTextToken;
 

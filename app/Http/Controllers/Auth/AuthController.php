@@ -37,11 +37,6 @@ class AuthController extends Controller
             // get user data from database
             $user = User::where('email', $request->email)->first();
 
-            // create profile
-            Profile::create([
-                'user_id' => $user->id
-            ]);
-
             // create token
             $token = $user->createToken('auth_token')->plainTextToken;
 

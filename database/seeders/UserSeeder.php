@@ -43,12 +43,6 @@ class UserSeeder extends Seeder
 
             foreach ($users as $user) {
                User::create($user);
-
-               $getUser = User::where('email', $user['email'])->first();
-
-               Profile::create([
-                   'user_id' => $getUser->id
-               ]);
             }
     }
 }
