@@ -56,16 +56,17 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     // manage staff routes
-    Route::view('/manage-staff/create', 'manage-staff.index')->name('manage-staff.index');
-    Route::view('/manage-staff/update', 'manage-staff.update')->name('manage-staff.update');
+    Route::view('/manage-staff/create', 'manage-staff.index')->name('manage.staff.index');
+    Route::view('/manage-staff/update', 'manage-staff.update')->name('manage.staff.update');
 
     Route::controller(ManageStaffController::class)->group(function () {
        
        Route::post('/manage-staff/store', 'store')->name('manage-staff.store'); 
-       Route::post('/manage-staff/update/{id}', 'update')->name('manage-staff.update');
-       Route::post('/manage-staff/delete/{id}', 'destroy')->name('manage-staff.delete');
-       Route::get('/all-area-manager', 'showAllAreaManagers')->name('all-area-manager'); 
-       Route::get('/all-counter-manager', 'showAllCounterManagers')->name('all-counter-manager'); 
+       Route::post('/manage-staff/update/{id}', 'update')->name('manage.staff.update');
+       Route::post('/manage-staff/delete/{id}', 'destroy')->name('manage.staff.delete');
+       Route::get('/all-area-manager', 'showAllAreaManagers')->name('all.area.manager'); 
+       Route::get('/all-counter-manager', 'showAllCounterManagers')->name('all.counter.manager'); 
+       Route::get('/all-driver', 'showAllDrivers')->name('all.driver'); 
     });
 });
 

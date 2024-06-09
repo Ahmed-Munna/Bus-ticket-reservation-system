@@ -69,6 +69,34 @@ class ManageStaffController extends Controller
             ], 500);
         }
     }
+
+    public function showAllDrivers(Request $request) {
+
+        try {
+
+            // get all counter managers
+            $users = User::with('profile')->where('role', 4)->get();
+
+            // logging history
+            Log::channel('ManageStaffController')->info('Get all drivers.', ['date' => now(), 'method' => __METHOD__, 'user_ip' => $request->ip()]);
+
+            // return response
+            return response()->json([
+                'status' => 'success',
+                'data' => $users
+            ], 200);
+        } catch (Exception $ex) {
+
+            // logging history
+            Log::channel('ManageStaffController')->error('Something went wrong.', [ 'exception' => $ex->getMessage() , 'date' => now(), 'method' => __METHOD__, 'user_ip' => $request->ip()]);
+
+            // return response
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Something went wrong.',
+            ], 500);
+        }
+    }
     
     public function store(ManageStaffRequest $request) 
     {
