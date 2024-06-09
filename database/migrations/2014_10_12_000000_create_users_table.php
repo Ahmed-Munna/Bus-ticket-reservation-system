@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('otp')
                   ->nullable()
                   ->default(null);
-            $table->enum('role', ['admin','area-manager','counter-manager','user'])->default('user');
+            $table->enum('role', ['admin','area-manager','counter-manager', 'driver','user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
 

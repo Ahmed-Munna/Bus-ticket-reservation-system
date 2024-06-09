@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateRequest extends FormRequest
+class UpdateStaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +21,17 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->all());
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['string', 'max:255'],
+            'last_name' => ['string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'gender' => ['string', 'max:50'],
-            'old_photo' => ['required', 'string'],
+            'old_photo' => ['string'],
             'photo' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'old_cv' => ['required', 'string'],
+            'old_cv' => ['string'],
             'cv' => ['mimes:pdf,zip', 'max:10240'],
+            'role' => ['required', 'in:area-manager, counter-manager, driver'],
             'phone' => ['string', 'max:50'],
             'em_phone' => ['string', 'max:50'],
             'address' => ['string', 'max:255'],

@@ -80,6 +80,11 @@ return [
             'path' => storage_path('logs/controllers/ProfileUpdateController.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'ManageStaffController' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/controllers/ManageStaffController.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',

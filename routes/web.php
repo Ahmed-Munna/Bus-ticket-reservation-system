@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
+use App\Http\Controllers\ManageStaffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+ Route::view('/', 'welcome');
+
+// Socialite Routes
+Route::controller(SocialiteLoginController::class)->group(function () {
+
+    Route::get('/auth/{provider}', 'redirectToProvider')->name('auth.google');
+    Route::get('/{provider}/callback', 'handleProviderCallback')->name('auth.google.callback');
+});
 
 // Authentication Routes
 
@@ -30,26 +38,35 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/user/login', 'login')->name('user.login');
     Route::post('/send-otp', 'sendOtp')->name('send.otp');
     Route::post('/verify-otp', 'verifyOtp')->name('verify.otp');
-
-    Route::middleware('auth:sanctum')->group(function () {
     
-        Route::post('/user/logout', 'logout')->name('user.logout');
-        Route::post('/reset-password', 'resetPassword')->name('reset.password');
+    });
+
+Route::middleware('auth:sanctum')->group(function () {
+    
+    Route::controller(AuthController::class)->group(function () {
+        
+        Route::post('/user/logout',  'logout')->name('user.logout');
+        Route::post('/reset-password',  'resetPassword')->name('reset.password');
+    });
+
+    Route::controller(ProfileUpdateController::class)->group(function () {
+
+        Route::get('/profile', 'index')->name('profile.index');
+        Route::post('/profile/update/{id}', 'updateProfile')->name('profile.update');
+    });
+
+    // manage staff routes
+    Route::view('/manage-staff/create', 'manage-staff.index')->name('manage-staff.index');
+    Route::view('/manage-staff/update', 'manage-staff.update')->name('manage-staff.update');
+
+    Route::controller(ManageStaffController::class)->group(function () {
+       
+       Route::post('/manage-staff/store', 'store')->name('manage-staff.store'); 
+       Route::post('/manage-staff/update/{id}', 'update')->name('manage-staff.update');
+       Route::post('/manage-staff/delete/{id}', 'destroy')->name('manage-staff.delete');
+       Route::get('/all-area-manager', 'showAllAreaManagers')->name('all-area-manager'); 
+       Route::get('/all-counter-manager', 'showAllCounterManagers')->name('all-counter-manager'); 
     });
 });
 
-// update profile routes
-Route::get('/profile', [ProfileUpdateController::class, 'index'])
-       ->middleware('auth:sanctum')
-       ->name('profile.index');
-Route::post('/profile/update', [ProfileUpdateController::class, 'update'])
-       ->middleware('auth:sanctum')->name('profile.update');
-
-
-// Socialite Routes
-Route::controller(SocialiteLoginController::class)->group(function () {
-
-    Route::get('/auth/{provider}', 'redirectToProvider')->name('auth.google');
-    Route::get('/{provider}/callback', 'handleProviderCallback')->name('auth.google.callback');
-});
 
