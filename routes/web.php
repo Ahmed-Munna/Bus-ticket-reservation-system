@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +83,28 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/counter/edit/{id}', 'edit')->name('counter.edit');
         Route::post('/counter/update/{id}', 'update')->name('counter.update');
         Route::get('/counter/delete/{id}', 'destroy')->name('counter.delete');
+    });
+
+    // vehicle type management routes
+
+    Route::controller(VehicleTypeController::class)->group(function () {
+
+        Route::get('/vehicle/types', 'index')->name('vehicle.type.index');
+        Route::post('/vehicle/type/store', 'store')->name('vehicle.type.store');
+        Route::get('/vehicle/type/edit/{id}', 'edit')->name('vehicle.type.edit');
+        Route::post('/vehicle/type/update/{id}', 'update')->name('vehicle.type.update');
+        Route::get('/vehicle/type/delete/{id}', 'destroy')->name('vehicle.type.delete');
+    });
+
+    // vehicle management routes
+
+    Route::controller(VehicleController::class)->group(function () {
+
+        Route::get('/vehicle/index', 'index')->name('vehicle.index');
+        Route::post('/vehicle/store', 'store')->name('vehicle.store');
+        Route::get('/vehicle/edit/{id}', 'edit')->name('vehicle.edit');
+        Route::post('/vehicle/update/{id}', 'update')->name('vehicle.update');
+        Route::get('/vehicle/delete/{id}', 'destroy')->name('vehicle.delete');
     });
 });
 

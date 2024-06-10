@@ -92,6 +92,18 @@ return [
             'path' => storage_path('logs/controllers/CounterController.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        
+        'VehicleTypeController' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/controllers/VehicleTypeController.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+        
+        'VehicleController' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/controllers/VehicleController.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',

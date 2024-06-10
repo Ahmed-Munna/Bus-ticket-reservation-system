@@ -21,7 +21,6 @@ class UpdateStaffRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->all());
         return [
             'first_name' => ['string', 'max:255'],
             'last_name' => ['string', 'max:255'],
