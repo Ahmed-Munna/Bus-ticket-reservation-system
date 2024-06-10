@@ -31,6 +31,7 @@ return new class extends Migration
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onUpdate('cascade')
                     ->onDelete('cascade');
 
             $table->index(['id', 'user_id', 'phone','country']);

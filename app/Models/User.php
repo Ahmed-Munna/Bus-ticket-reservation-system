@@ -56,6 +56,9 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function counter(){
+        return $this->hasOne(Counter::class, 'counter_manager_id');
+    }
     public static function boot() {
         parent::boot();
         

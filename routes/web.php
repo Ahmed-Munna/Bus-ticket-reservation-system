@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
+use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     // manage staff routes
+
     Route::view('/manage-staff/create', 'manage-staff.index')->name('manage.staff.index');
     Route::view('/manage-staff/update', 'manage-staff.update')->name('manage.staff.update');
 
@@ -67,6 +69,18 @@ Route::middleware('auth:sanctum')->group(function () {
        Route::get('/all-area-manager', 'showAllAreaManagers')->name('all.area.manager'); 
        Route::get('/all-counter-manager', 'showAllCounterManagers')->name('all.counter.manager'); 
        Route::get('/all-driver', 'showAllDrivers')->name('all.driver'); 
+    });
+
+    // counter routes
+
+    Route::controller(CounterController::class)->group(function () {
+
+        Route::get('/counters', 'index')->name('counter.index');
+        Route::get('/counter/create', 'create')->name('counter.create');
+        Route::post('/counter/store', 'store')->name('counter.store');
+        Route::get('/counter/edit/{id}', 'edit')->name('counter.edit');
+        Route::post('/counter/update/{id}', 'update')->name('counter.update');
+        Route::get('/counter/delete/{id}', 'destroy')->name('counter.delete');
     });
 });
 
