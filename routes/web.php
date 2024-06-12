@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
+use App\Http\Controllers\TripsRouteController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleTypeController;
+use App\Http\Requests\VehicleRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,6 +108,25 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/vehicle/update/{id}', 'update')->name('vehicle.update');
         Route::get('/vehicle/delete/{id}', 'destroy')->name('vehicle.delete');
     });
+
+    /*
+     * 
+     * Manage Trips routes
+     *
+     */
+
+     // vehicle routes manage
+     
+     Route::controller(TripsRouteController::class)->group(function () {
+
+        Route::get('/trips/route/index', 'index')->name('trips.route.index');
+        Route::get('/trips/route/create', 'create')->name('trips.route.create');
+        Route::post('/trips/route/store', 'store')->name('trips.route.store');
+        Route::get('/trips/route/edit/{id}', 'edit')->name('trips.route.edit');
+        Route::post('/trips/route/update/{id}', 'update')->name('trips.route.update');
+        Route::get('/trips/route/delete/{id}', 'destroy')->name('trips.route.delete');
+    });
+
 });
 
 

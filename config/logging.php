@@ -105,6 +105,18 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'TripsRouteController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TripsRouteController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
+        
+        'TripsRouteController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TripsRouteController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
