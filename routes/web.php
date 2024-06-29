@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
+use App\Http\Controllers\TicketPriceController;
 use App\Http\Controllers\TripsRouteController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleTypeController;
@@ -117,7 +118,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
      // vehicle routes manage
      
-     Route::controller(TripsRouteController::class)->group(function () {
+    Route::controller(TripsRouteController::class)->group(function () {
 
         Route::get('/trips/route/index', 'index')->name('trips.route.index');
         Route::get('/trips/route/create', 'create')->name('trips.route.create');
@@ -125,6 +126,18 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/trips/route/edit/{id}', 'edit')->name('trips.route.edit');
         Route::post('/trips/route/update/{id}', 'update')->name('trips.route.update');
         Route::get('/trips/route/delete/{id}', 'destroy')->name('trips.route.delete');
+    });
+
+    // ticket routes
+
+    Route::controller(TicketPriceController::class)->group(function () {
+
+        Route::get('/ticket/index', 'index')->name('ticket.index');
+        Route::get('/ticket/create', 'create')->name('ticket.create');
+        Route::post('/ticket/store', 'store')->name('ticket.store');
+        Route::get('/ticket/edit/{id}', 'edit')->name('ticket.edit');
+        Route::post('/ticket/update/{id}', 'update')->name('ticket.update');
+        Route::get('/ticket/delete/{id}', 'destroy')->name('ticket.delete');
     });
 
 });

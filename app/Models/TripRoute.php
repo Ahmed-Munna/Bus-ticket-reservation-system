@@ -13,5 +13,10 @@ class TripRoute extends Model
         'id',
         'created_at',
         'updated_at'
-    ]; 
+    ];
+    
+    public function ticketPrice() 
+    {
+        return $this->belongsTo(TicketPrice::class, 'trip_route_id', 'id');
+    }
 }

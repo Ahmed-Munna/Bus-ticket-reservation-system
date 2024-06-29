@@ -22,4 +22,9 @@ class VehicleType extends Model
     {
         return $this->hasMany(Vehicle::class, 'vehicle_type_id', 'id');
     }
+
+    public function ticketPrices()
+    {
+        return $this->hasOne(TicketPrice::class, 'vehicle_type_id', 'id');
+    }
 }
