@@ -116,6 +116,16 @@ return [
                     'path' => storage_path('logs/controllers/TripsRouteController.log'),
                     'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'TicketPriceController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TripsRouteController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
+        'ScheduleController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TripsRouteController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',

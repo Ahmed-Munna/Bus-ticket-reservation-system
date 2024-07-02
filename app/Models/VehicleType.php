@@ -14,6 +14,7 @@ class VehicleType extends Model
         'slug',
         'seat_layout',
         'number_of_seats',
+        'seat_number',
         'status',
         'has_ac',
     ];

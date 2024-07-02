@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('slug');
             $table->enum('seat_layout', ['2 x 2', '2 x 3','3 x 2', '3 x 3', '1 x 2', '1 x 3'])->default('2 x 2');
             $table->string('number_of_seats');
+            $table->string('seat_number');
             $table->boolean('status')->default(1);
             $table->boolean('has_ac')->default(0);
             $table->timestamps();
 
-            $table->index(['id', 'slug', 'status', 'has_ac']);
+            $table->index(['id', 'seat_number', 'status', 'has_ac']);
         });
     }
 

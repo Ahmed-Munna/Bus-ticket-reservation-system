@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ProfileUpdateController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
+use App\Http\Controllers\ScheuleController;
 use App\Http\Controllers\TicketPriceController;
 use App\Http\Controllers\TripsRouteController;
 use App\Http\Controllers\VehicleController;
@@ -138,6 +139,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/ticket/edit/{id}', 'edit')->name('ticket.edit');
         Route::post('/ticket/update/{id}', 'update')->name('ticket.update');
         Route::get('/ticket/delete/{id}', 'destroy')->name('ticket.delete');
+    });
+
+    // schedule
+
+    Route::controller(ScheuleController::class)->group(function () {
+
+        Route::get('/schedule/index', 'index')->name('schedule.index');
+        Route::view('/schedule/create', 'schedule.create')->name('schedule.create');
+        Route::post('/schedule/store', 'store')->name('schedule.store');
+        Route::get('/schedule/delete/{id}', 'destroy')->name('schedule.delete');
     });
 
 });

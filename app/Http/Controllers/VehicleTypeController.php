@@ -55,6 +55,7 @@ class VehicleTypeController extends Controller
                 'slug' => Str::slug($request->name),
                 'seat_layout' => $request->seat_layout,
                 'number_of_seats' => $request->number_of_seats,
+                'seat_number' => $request->seat_number,
                 'status' => $request->status,
                 'has_ac' => $request->has_ac,
             ]);
@@ -128,6 +129,7 @@ class VehicleTypeController extends Controller
                 'slug' => Str::slug($request->name),
                 'seat_layout' => $request->seat_layout,
                 'number_of_seats' => $request->number_of_seats,
+                'seat_number' => $request->seat_number,
                 'status' => $request->status,
                 'has_ac' => $request->has_ac,
             ]);
