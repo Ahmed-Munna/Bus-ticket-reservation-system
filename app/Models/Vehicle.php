@@ -26,4 +26,9 @@ class Vehicle extends Model
     {
         return $this->belongsTo(VehicleType::class, 'vehicle_type_id');
     }
+
+    public function Trips()
+    {
+        return $this->hasOne(Trip::class, 'vehicle_id');
+    }
 }

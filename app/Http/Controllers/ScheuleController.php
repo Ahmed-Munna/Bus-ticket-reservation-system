@@ -43,8 +43,9 @@ class ScheuleController extends Controller
         
         //validation
         $request->validate([
-            'start_time' => 'required | date_format:H:i',
-            'end_time' => 'required | date_format:H:i',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'journey_date' => 'required',
         ]);
         try {
 

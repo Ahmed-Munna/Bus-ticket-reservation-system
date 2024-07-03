@@ -38,6 +38,12 @@ class UserSeeder extends Seeder
                 'email' => 'user@gmail.com',
                 'password' => 'user1234',
                 'role' => 'user'
+            ],
+            [
+                'name' => 'Driver',
+                'email' => 'driver@gmail.com',
+                'password' => 'driver1234',
+                'role' => 'driver'
             ]
             ];
 

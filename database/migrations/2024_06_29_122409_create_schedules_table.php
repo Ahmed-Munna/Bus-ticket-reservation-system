@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('start_time');
             $table->string('end_time');
+            $table->string('journey_date');
             $table->timestamps();
+
+            $table->index(['id', 'start_time', 'end_time', 'journey_date']);
         });
     }
 

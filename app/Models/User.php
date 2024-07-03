@@ -59,6 +59,11 @@ class User extends Authenticatable
     public function counter(){
         return $this->hasOne(Counter::class, 'counter_manager_id');
     }
+
+    public function Trips() {
+
+        return $this->hasOne(Trip::class, 'user_id');
+    }
     public static function boot() {
         parent::boot();
         
@@ -69,4 +74,5 @@ class User extends Authenticatable
             $profile->save();
         });
     }
+
 }

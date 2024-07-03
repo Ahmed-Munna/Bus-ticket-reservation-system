@@ -126,6 +126,11 @@ return [
                     'path' => storage_path('logs/controllers/TripsRouteController.log'),
                     'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'TripController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TripController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',

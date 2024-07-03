@@ -12,5 +12,11 @@ class Schedule extends Model
     protected $fillable = [
         'start_time',
         'end_time',
+        'journey_date',
     ];
+
+    public function Trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }

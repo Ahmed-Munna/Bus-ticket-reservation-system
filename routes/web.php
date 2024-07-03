@@ -7,6 +7,7 @@ use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ManageStaffController;
 use App\Http\Controllers\ScheuleController;
 use App\Http\Controllers\TicketPriceController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripsRouteController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleTypeController;
@@ -149,6 +150,18 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::view('/schedule/create', 'schedule.create')->name('schedule.create');
         Route::post('/schedule/store', 'store')->name('schedule.store');
         Route::get('/schedule/delete/{id}', 'destroy')->name('schedule.delete');
+    });
+
+    // trips
+
+    Route::controller(TripController::class)->group(function () {
+
+        Route::get('/trips/index', 'index')->name('trips.index');
+        Route::get('/trips/create', 'create')->name('trips.create');
+        Route::post('/trips/store', 'store')->name('trips.store');
+        Route::get('/trips/edit/{id}', 'edit')->name('trips.edit');
+        Route::post('/trips/update/{id}', 'update')->name('trips.update');
+        Route::get('/trips/delete/{id}', 'destroy')->name('trips.delete');
     });
 
 });

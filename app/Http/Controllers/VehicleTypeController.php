@@ -150,7 +150,7 @@ class VehicleTypeController extends Controller
             // return response
             return response()->json([
                 'status' => 'error',
-                'message' => $ex->getMessage()
+                'message' => 'Something went wrong!'
             ], 500);
         }
     }
