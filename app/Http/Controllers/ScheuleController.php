@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use Exception;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class ScheuleController extends Controller
 {
+
     public function index() 
     {
-        
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get all schedules
@@ -40,7 +48,10 @@ class ScheuleController extends Controller
 
     public function store(Request $request) 
     {
-        
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         //validation
         $request->validate([
             'start_time' => 'required',
@@ -75,6 +86,10 @@ class ScheuleController extends Controller
 
     public function destroy($id) 
     {
+        
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
         
         try {
             // get schedule

@@ -6,6 +6,7 @@ use App\Http\Requests\CounterRequest;
 use App\Models\Counter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class CounterController extends Controller
@@ -13,6 +14,10 @@ class CounterController extends Controller
     
     public function index(Request $request) {
         
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get all counters
@@ -43,6 +48,10 @@ class CounterController extends Controller
     }
     public function create(Request $request) {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get all counter managers
@@ -71,6 +80,10 @@ class CounterController extends Controller
     }
 
     public function store(CounterRequest $request) {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         // validation
         $request->validated();
@@ -110,6 +123,10 @@ class CounterController extends Controller
 
     public function edit(Request $request, $id) {
         
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
             
             // get counter
@@ -141,6 +158,10 @@ class CounterController extends Controller
     }
     public function update(CounterRequest $request, $id) {
         
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         // validation
         $request->validated();
 
@@ -183,6 +204,10 @@ class CounterController extends Controller
     }
     public function destroy(Request $request, $id) {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+        
         try {
 
             // get counter

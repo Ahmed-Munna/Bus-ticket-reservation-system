@@ -10,6 +10,7 @@ use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class TripController extends Controller
@@ -17,6 +18,10 @@ class TripController extends Controller
     
     public function index()
     {
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get all trips
@@ -66,6 +71,10 @@ class TripController extends Controller
 
     public function create(Request $request) 
     {
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
             
             // get trip route
@@ -120,6 +129,10 @@ class TripController extends Controller
     public function store(Request $request)
     {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         //validation
         $request->validate([
             'trip_route' => 'required | string',
@@ -160,6 +173,10 @@ class TripController extends Controller
     public function edit($id)
     {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+        
         try {
             
             // get trip
@@ -214,6 +231,10 @@ class TripController extends Controller
     public function update(Request $request, $id)
     {
         
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         //validation
         $request->validate([
             'trip_route' => 'required | string',
@@ -254,6 +275,10 @@ class TripController extends Controller
     public function destroy($id)
     {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+        
         try {
 
             // get trip

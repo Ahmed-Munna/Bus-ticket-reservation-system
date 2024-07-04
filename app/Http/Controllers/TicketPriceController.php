@@ -7,6 +7,7 @@ use App\Models\TripRoute;
 use App\Models\VehicleType;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Attributes\Ticket;
 
@@ -14,6 +15,9 @@ class TicketPriceController extends Controller
 {
     public function index(Request $request) 
     {
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         try {
 
@@ -46,6 +50,9 @@ class TicketPriceController extends Controller
 
     public function create(Request $request) 
     {
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         try {
 
@@ -79,6 +86,10 @@ class TicketPriceController extends Controller
 
     public function store(Request $request) 
     {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         //validation
         $request->validate([
@@ -118,6 +129,10 @@ class TicketPriceController extends Controller
     public function edit(Request $request, $id) 
     {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get ticket price
@@ -152,7 +167,12 @@ class TicketPriceController extends Controller
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id) 
+    {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         //validation
         $request->validate([
@@ -190,7 +210,12 @@ class TicketPriceController extends Controller
         }
     }
 
-    public function destroy(Request $request ,$id) {
+    public function destroy(Request $request ,$id) 
+    {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         try {
 

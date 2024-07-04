@@ -7,12 +7,17 @@ use App\Models\Vehicle;
 use App\Models\VehicleType;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class VehicleController extends Controller
 {
     public function index(Request $request) 
     {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         try {
 
@@ -42,6 +47,10 @@ class VehicleController extends Controller
 
     public function store(VehicleRequest $request) 
     {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         //validation
         $request->validated();
@@ -88,6 +97,10 @@ class VehicleController extends Controller
     public function edit(Request $request, $id) 
     {
 
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+
         try {
 
             // get vehicle type
@@ -118,6 +131,10 @@ class VehicleController extends Controller
 
     public function update(VehicleRequest $request, $id) 
     {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
 
         // validation
         $request->validated();
@@ -164,6 +181,11 @@ class VehicleController extends Controller
 
     public function destroy(Request $request, $id)
     {
+
+        if (Gate::denies('adminOrManager')) {
+            abort(403);
+        }
+        
         try {
 
             // get vehicle type

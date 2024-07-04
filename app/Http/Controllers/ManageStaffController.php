@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,6 +16,10 @@ class ManageStaffController extends Controller
 {
 
     public function showAllAreaManagers(Request $request) {
+
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
 
         try {
 
@@ -44,6 +49,10 @@ class ManageStaffController extends Controller
     
     public function showAllCounterManagers(Request $request) {
 
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
+
         try {
 
             // get all counter managers
@@ -71,6 +80,10 @@ class ManageStaffController extends Controller
     }
 
     public function showAllDrivers(Request $request) {
+
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
 
         try {
 
@@ -100,6 +113,9 @@ class ManageStaffController extends Controller
     
     public function store(ManageStaffRequest $request) 
     {
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
         
         $request->validated();
 
@@ -171,6 +187,9 @@ class ManageStaffController extends Controller
 
     public function update(UpdateStaffRequest $request, $id) 
     {
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
 
         $request->validated();
         try {
@@ -248,6 +267,9 @@ class ManageStaffController extends Controller
 
     public function destroy(Request $request, $id) 
     {
+        if (Gate::denies('admin')) {
+            abort(403);
+        }
 
         try {
 
