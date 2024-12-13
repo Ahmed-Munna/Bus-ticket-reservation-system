@@ -131,6 +131,11 @@ return [
                     'path' => storage_path('logs/controllers/TripController.log'),
                     'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'TicketBookingFromAgentController' => [
+                    'driver' => 'single',
+                    'path' => storage_path('logs/controllers/TicketBookingFromAgentController.log'),
+                    'level' => env('LOG_LEVEL', 'debug'),
+        ],
 
         'daily' => [
             'driver' => 'daily',

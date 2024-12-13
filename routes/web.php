@@ -11,6 +11,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripsRouteController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleTypeController;
+use App\Http\Controllers\TicketBookingFromAgentController;
 use App\Http\Requests\VehicleRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -162,6 +163,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/trips/edit/{id}', 'edit')->name('trips.edit');
         Route::post('/trips/update/{id}', 'update')->name('trips.update');
         Route::get('/trips/delete/{id}', 'destroy')->name('trips.delete');
+    });
+
+    // ticket booking from agent
+
+    Route::controller(TicketBookingFromAgentController::class)->group(function () {
+
+        Route::get('/ticket/booking', 'index')->name('ticket.booking.index');
+        Route::get('/ticket/find-trips', 'findTrips')->name('ticket.find.trips');
     });
 
 });

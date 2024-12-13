@@ -25,7 +25,7 @@ class Trip extends Model
 
     public function VehicleType() 
     {
-        return $this->belongsTo(VehicleType::class, 'vehicle_type');
+        return $this->belongsTo(VehicleType::class, 'vehicle_type', 'id');
     }
 
     public function TripRoute() 
@@ -35,7 +35,7 @@ class Trip extends Model
 
     public function Schedule() 
     {
-        return $this->belongsTo(Schedule::class, 'schedule');
+        return $this->belongsTo(Schedule::class, 'schedule', 'id');
     }
 
 }

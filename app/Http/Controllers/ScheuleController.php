@@ -61,7 +61,10 @@ class ScheuleController extends Controller
         try {
 
             // create new schedule
-            Schedule::create($request->all());
+            Schedule::create([
+                'scheule' => $request->start_time . ' - ' . $request->end_time,
+                'journey_date' => $request->journey_date
+            ]);
 
             // logging history
             Log::channel('ScheuleController')->info('Create new schedule.', ['date' => now(), 'method' => __METHOD__]);

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('ticket_prices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vehicle_type_id')->unique();
-            $table->unsignedBigInteger('trip_route_id')->unique();
+            $table->unsignedBigInteger('vehicle_type_id');
+            $table->unsignedBigInteger('trip_route_id');
             $table->string('price');
             $table->timestamps();
 

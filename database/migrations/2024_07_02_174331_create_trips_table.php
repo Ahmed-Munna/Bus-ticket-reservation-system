@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('schedule');
             $table->unsignedBigInteger('vehicle_type');
             $table->unsignedBigInteger('vehicle_list');
-            $table->unsignedBigInteger('driver_list');
+            $table->unsignedBigInteger('driver_list')->unique();
             $table->boolean('status')->default(1);
             $table->timestamps();
         
